@@ -2,26 +2,30 @@ import React, {useState} from "react";
 
 export default function SearchBar(){
 
-    //set useState variable and user input 
+    //set useState variable
     const [search, setSearch] = useState("");
-    let userInput = ""
 
-    //Capture what was entered in search bar and store it in userInput
+    //Adds the input value to the search variable
     function handleSearchChange(e){
-        userInput = e.target.value
+        setSearch(e.target.value)
     }
 
-    //Only store userInput in search variable when the user clicks the search button
-    function handleClick(){
-        setSearch(userInput)
-        console.log(userInput)
+    //submits form, prints data to log and clears input field
+    function handleSubmit(e){
+         e.preventDefault();
+        console.log(`Searching for ${search}...`)
+        document.getElementById("searchBar").value = ""
     }
 
 
     return (
-        <div className="search-container">
-        <input id="searchBar" type="text" placeholder="Search for a song..." onChange={(e) => handleSearchChange(e)}/><br /> 
-        <button onClick={handleClick}>Search</button>
-        </div>
+        <form onSubmit={(e) => handleSubmit(e)}>
+        <input id="searchBar" 
+               type="text" 
+               placeholder="Search for a song..." 
+              onChange={(e) => handleSearchChange(e)} 
+               value={search}/><br /> 
+        <button type="submit">Search</button>
+        </form>
     )
 }

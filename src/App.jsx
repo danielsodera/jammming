@@ -11,7 +11,7 @@ function App() {
     <h1>Jammming!</h1>
     <p>Create your own Spotify Playlist</p><br /> 
     </header>
-    <SearchBar />
+    <SearchBar /><br /> 
     </>
   )
 }
