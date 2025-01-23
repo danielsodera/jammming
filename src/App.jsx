@@ -1,6 +1,7 @@
 import React from 'react'
 import './App.css'
 import SearchBar from './components/SearchBar'
+import SearchResults from './components/SearchResults'
 
 function App() {
   
@@ -12,6 +13,7 @@ function App() {
     <p>Create your own Spotify Playlist</p><br /> 
     </header>
     <SearchBar /><br /> 
+    <SearchResults /> 
     </>
   )
 }
