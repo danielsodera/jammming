@@ -1,12 +1,20 @@
-import React from "react";
+import React, {useState} from "react";
 
-export default function Playlist(){
+export default function Playlist({handleRemoveSongs, userPlaylist, playlistName, handlePlaylistName}){
+
+   
+
+
 
 
 
     return (
-        <>
+        <div className="playlist-container">
+            <input type="text" className="playlist-name" value={playlistName} onChange={(e) => handlePlaylistName(e)} placeholder="Type in a name for your playlist" /> 
+            <ul>
+            {userPlaylist.map((song, index) => <li className="playlist-list" key={index} onClick={() => handleRemoveSongs(index)}>{song.name} by {song.artists[0].name}</li>)}
+            </ul>
         <button>Save to Spotify</button>
-        </>
+        </div>
     )
 }

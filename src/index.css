@@ -1,1 +1,24 @@
+.track-list{
+  display: flex;
+  align-items: left;
+}
 
+
+.search-results-list{
+  list-style-type: none;
+}
+
+.search-results-list:hover{
+  color: green;
+  cursor: pointer;
+}
+
+.playlist-list{
+  list-style-type: none;
+}
+
+.playlist-list:hover{
+  list-style-type: none;
+  color: red;
+  cursor: pointer;
+}
