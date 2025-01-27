@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 
-export default function Playlist({handleRemoveSongs, userPlaylist, playlistName, handlePlaylistName}){
+export default function Playlist({handleRemoveSongs, userPlaylist, playlistName, handlePlaylistName, handleSendToSpotify}){
 
    
 
@@ -14,7 +14,7 @@ export default function Playlist({handleRemoveSongs, userPlaylist, playlistName,
             <ul>
             {userPlaylist.map((song, index) => <li className="playlist-list" key={index} onClick={() => handleRemoveSongs(index)}>{song.name} by {song.artists[0].name}</li>)}
             </ul>
-        <button>Save to Spotify</button>
+        <button onClick={handleSendToSpotify}>Save to Spotify</button>
         </div>
     )
 }

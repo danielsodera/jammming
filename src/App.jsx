@@ -6,8 +6,45 @@ import Playlist from './components/Playlist'
 import TrackList from './components/TrackList'
 const clientId = "ed6e5dfe76ec4ea3ad04fa5722bffdd7"
 const clientSecret = "197dc4e34e354bd294ae73fb39cf073e"; 
+const redirect_uri = 'http://localhost:5173/callback'; 
+const space_delimiter = "%20"
+const scopes = ["user-read-private", "user-read-email"]
+const scopes_url_param = scopes.join(space_delimiter)
+const spotify_authorize_endpoint = "https://accounts.spotify.com/authorize"
+
+const getReturnedParamsFromSpotifyAuth = (hash) => {
+  const stringAfterHashtag = hash.substring(1);
+  const paramsInUrl = stringAfterHashtag.split("&");
+  const paramsSplitUp = paramsInUrl.reduce((accumulater, currentValue) => {
+    
+    const [key, value] = currentValue.split("=");
+    accumulater[key] = value;
+    //console.log(accumulater)
+    return accumulater;
+    
+  }, {});
+
+  return paramsSplitUp;
+}
+
 
 function App() {
+
+  //userAuthorization 
+  const [userId, setUserId] = useState('');
+
+  useEffect(() => {
+    if (window.location.hash) {
+     const {access_token, expires_in, token_type} =  getReturnedParamsFromSpotifyAuth(window.location.hash); 
+    // console.log({access_token})
+    }
+  })
+
+    function handleLogin (){
+      window.location = `${spotify_authorize_endpoint}?client_id=${clientId}&redirect_uri=${redirect_uri}&scope=${scopes_url_param}&response_type=token&show_dialog=true/`
+
+    }
+
 
     //Search bar component
     const [search, setSearch] = useState("");
@@ -84,6 +121,7 @@ function App() {
 
   return (
     <>
+    <button onClick={handleLogin}>Login to Spotify</button>
     <header>
     <h1>Jammming!</h1>
     <p>Create your own Spotify Playlist</p><br /> 
